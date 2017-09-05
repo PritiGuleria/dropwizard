@@ -1,0 +1,12 @@
+
+server:
+  applicationConnectors:
+    - type: http
+      port: 5001
+  adminConnectors:
+    - type: http
+      port: 5002
+
+mongoConfig:
+  mongoUrl: "localhost"
+  mongoDb: mydb
