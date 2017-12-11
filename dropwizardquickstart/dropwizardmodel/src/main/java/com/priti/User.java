@@ -3,15 +3,20 @@ package com.priti;
 /**
  * Created by prguleri on 9/5/2017.
  */
-public class Users {
+public class User {
 
     private String name;
     private int age;
     private String gender;
 
-    public Users() {
+    public User() {
     }
 
+    public User(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
 
     public String getName() {
         return name;

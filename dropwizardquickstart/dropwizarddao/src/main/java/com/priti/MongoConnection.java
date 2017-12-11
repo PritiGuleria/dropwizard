@@ -24,10 +24,10 @@ public class MongoConnection {
     }
 
 
-    public boolean addNames(Users users) {
-        Document doc = new Document("name", users.getName())
-                .append("age", users.getAge())
-                .append("gender", users.getGender());
+    public boolean addNames(User user) {
+        Document doc = new Document("name", user.getName())
+                .append("age", user.getAge())
+                .append("gender", user.getGender());
 
         try {
             mongoCollection.insertOne(doc);
@@ -38,13 +38,13 @@ public class MongoConnection {
         }
     }
 
-    public List<Users> getUsers() {
+    public List<User> getUsers() {
 
-        List<Users> list = new ArrayList<Users>();
+        List<User> list = new ArrayList<User>();
         FindIterable<Document> iterable = mongoCollection.find();
 
         for (Document doc : iterable) {
-            Users user = new Users();
+            User user = new User();
             user.setName(doc.getString("name"));
             user.setAge(doc.getInteger("age"));
             user.setGender(doc.getString("gender"));
@@ -54,12 +54,12 @@ public class MongoConnection {
         return list;
     }
 
-    public boolean updateUser(String userName,Users newUsers){
+    public boolean updateUser(String userName,User newUser){
         BasicDBObject query = new BasicDBObject();
         query.put("name",userName);
 
         BasicDBObject newValue = new BasicDBObject();
-        Document doc = new Document("name",newUsers.getName());
+        Document doc = new Document("name", newUser.getName());
         newValue.put("$set",doc);
 
         UpdateResult result =mongoCollection.updateOne(query,newValue);

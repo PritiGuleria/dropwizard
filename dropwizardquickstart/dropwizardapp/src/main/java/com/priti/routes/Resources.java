@@ -2,7 +2,7 @@ package com.priti.routes;
 
 import com.priti.AppConfiguration;
 import com.priti.MongoConnection;
-import com.priti.Users;
+import com.priti.User;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -23,16 +23,17 @@ public class Resources {
     }
 
     @POST
-    @Path("/add/users")
+    @Path("/add/user")
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean addUser(Users users) {
-        return mongoConnection.addNames(users);
+    public boolean addUser(User user) {
+
+        return mongoConnection.addNames(user);
     }
 
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Users> getUsers() {
+    public List<User> getUsers() {
 
         return mongoConnection.getUsers();
     }
@@ -40,8 +41,8 @@ public class Resources {
     @POST
     @Path("/update/{user}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean updateUser(@PathParam("user") String userName,Users newUsers) {
-        return mongoConnection.updateUser(userName,newUsers);
+    public boolean updateUser(@PathParam("user") String userName,User newUser) {
+        return mongoConnection.updateUser(userName, newUser);
 
     }
 
